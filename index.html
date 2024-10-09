@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق حقائب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #9CD3D8;
+            color: #0B6988;
+        }
+        header {
+            background-color: #0396A6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #0B6988;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #0396A6;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #0396A6;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .product {
+            background-color: white;
+            border: 2px solid #0396A6;
+            border-radius: 8px;
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .product h3 {
+            color: #0B6988;
+        }
+        .product p {
+            color: #0396A6;
+        }
+        .product button {
+            background-color: #0B6988;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .product button:hover {
+            background-color: #0396A6;
+        }
+        .shopping-cart {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #0396A6;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .cart-item h4 {
+            color: #0B6988;
+        }
+        .cart-item button {
+            background-color: #B94D29;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .cart-item button:hover {
+            background-color: #FF5C33;
+        }
+        .promo {
+            margin-top: 40px;
+            background-color: #FFEDD5;
+            color: #B94D29;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .features {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .feature {
+            background-color: white;
+            border: 1px solid #0396A6;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+        }
+        .social-icons {
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: #0B6988;
+            font-size: 24px;
+        }
+        .faq {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .faq-item {
+            margin-bottom: 15px;
+        }
+        .faq-item h4 {
+            cursor: pointer;
+            color: #0396A6;
+            margin: 0;
+        }
+        .faq-item p {
+            display: none;
+            color: #0B6988;
+        }
+        .blog {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .blog-post {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #0396A6;
+            border-radius: 5px;
+        }
+        .login-form,
+        .signup-form {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .login-form input,
+        .signup-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #0396A6;
+            border-radius: 5px;
+        }
+        .login-form button,
+        .signup-form button {
+            background-color: #0B6988;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .testimonials {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .testimonial {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #0396A6;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .newsletter {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .newsletter input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #0396A6;
+        }
+        .newsletter button {
+            padding: 10px;
+            background-color: #0B6988;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .map {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .contact-form {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #0396A6;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #0B6988;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .shipping-return {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .shipping-return h3 {
+            color: #0396A6;
+        }
+        .help-support {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .help-support h3 {
+            color: #0396A6;
+        }
+        .video-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .news-section {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .news-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #0396A6;
+            border-radius: 5px;
+        }
+        .accordion {
+            margin-top: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .accordion-item {
+            margin-bottom: 15px;
+        }
+        .accordion-item h4 {
+            cursor: pointer;
+            color: #0396A6;
+            margin: 0;
+        }
+        .accordion-item p {
+            display: none;
+            color: #0B6988;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const faqItems = document.querySelectorAll('.faq-item h4');
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const answer = item.nextElementSibling;
+                    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                });
+            });
+
+            const accordionItems = document.querySelectorAll('.accordion-item h4');
+            accordionItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const answer = item.nextElementSibling;
+                    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                });
+            });
+
+            const products = document.querySelectorAll('.product');
+            const cartTotalElement = document.querySelector('.cart-total strong');
+            let cartTotal = 0;
+
+            products.forEach(product => {
+                product.querySelector('button').addEventListener('click', function() {
+                    const productName = product.querySelector('h3').innerText;
+                    const productPrice = parseFloat(product.querySelector('p').innerText);
+                    cartTotal += productPrice;
+                    cartTotalElement.innerText = `إجمالي: ${cartTotal} ريال`;
+
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `<h4>${productName}</h4><button>حذف</button>`;
+                    document.querySelector('.shopping-cart').appendChild(cartItem);
+
+                    cartItem.querySelector('button').addEventListener('click', function() {
+                        cartItem.remove();
+                        cartTotal -= productPrice;
+                        cartTotalElement.innerText = `إجمالي: ${cartTotal} ريال`;
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>مرحبا بكم في تطبيق الحقائب</h1>
+        <nav>
+            <a href="#products">المنتجات</a>
+            <a href="#reviews">المراجعات</a>
+            <a href="#contact">اتصل بنا</a>
+            <a href="#promo">العروض</a>
+            <a href="#faq">الأسئلة الشائعة</a>
+            <a href="#blog">المدونة</a>
+            <a href="#login">تسجيل الدخول</a>
+            <a href="#signup">إنشاء حساب</a>
+            <a href="#map">خريطة المتاجر</a>
+            <a href="#shipping-return">الشحن والإرجاع</a>
+            <a href="#help-support">المساعدة والدعم</a>
+        </nav>
+    </header>
+    <main>
+        <div class="search-bar">
+            <input type="text" placeholder="ابحث عن منتجات...">
+            <button>بحث</button>
+        </div>
+
+        <h2 id="products">منتجاتنا</h2>
+        <div class="product-container">
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="حقيبة سوداء">
+                <h3>حقيبة سوداء</h3>
+                <p>150 ريال</p>
+                <button>أضف إلى السلة</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="حقيبة زرقاء">
+                <h3>حقيبة زرقاء</h3>
+                <p>200 ريال</p>
+                <button>أضف إلى السلة</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="حقيبة حمراء">
+                <h3>حقيبة حمراء</h3>
+                <p>180 ريال</p>
+                <button>أضف إلى السلة</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="حقيبة خضراء">
+                <h3>حقيبة خضراء</h3>
+                <p>170 ريال</p>
+                <button>أضف إلى السلة</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="حقيبة زهرية">
+                <h3>حقيبة زهرية</h3>
+                <p>160 ريال</p>
+                <button>أضف إلى السلة</button>
+            </div>
+        </div>
+
+        <h2 id="cart">سلة التسوق</h2>
+        <div class="shopping-cart">
+            <div class="cart-total">
+                <strong>إجمالي: 0 ريال</strong>
+            </div>
+        </div>
+
+        <h2 id="promo">العروض الترويجية</h2>
+        <div class="promo">
+            <h3>خصم 30% على الحقائب الجديدة!</h3>
+            <p>سارع بالحصول على خصومات رائعة!</p>
+        </div>
+
+        <h2 id="testimonials">آراء العملاء</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p>الحقائب رائعة جداً والجودة ممتازة!</p>
+                <p><strong>محمد</strong></p>
+            </div>
+            <div class="testimonial">
+                <p>اشتريت حقيبة وتوصيل سريع وخدمة ممتازة.</p>
+                <p><strong>سارة</strong></p>
+            </div>
+        </div>
+
+        <h2 id="newsletter">اشترك في النشرة الإخبارية</h2>
+        <div class="newsletter">
+            <input type="email" placeholder="أدخل بريدك الإلكتروني">
+            <button>اشترك</button>
+        </div>
+
+        <h2 id="contact">اتصل بنا</h2>
+        <div class="contact-form">
+            <input type="text" placeholder="الاسم الكامل">
+            <input type="email" placeholder="البريد الإلكتروني">
+            <textarea placeholder="رسالتك"></textarea>
+            <button>إرسال</button>
+        </div>
+
+        <h2 id="faq">الأسئلة الشائعة</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <h4>كيف أشتري حقيبة؟</h4>
+                <p>يمكنك اختيار الحقيبة التي تريدها وإضافتها إلى سلة التسوق ثم المتابعة للدفع.</p>
+            </div>
+            <div class="faq-item">
+                <h4>ما هي طرق الدفع المتاحة؟</h4>
+                <p>نحن نقبل جميع بطاقات الائتمان والدفع عبر الإنترنت.</p>
+            </div>
+        </div>
+
+        <h2 id="shipping-return">سياسة الشحن والإرجاع</h2>
+        <div class="shipping-return">
+            <h3>سياسة الشحن</h3>
+            <p>نقوم بشحن الطلبات خلال 2-5 أيام عمل.</p>
+            <h3>سياسة الإرجاع</h3>
+            <p>يمكنك إرجاع المنتج خلال 30 يومًا من تاريخ الشراء.</p>
+        </div>
+
+        <h2 id="help-support">المساعدة والدعم</h2>
+        <div class="help-support">
+            <h3>لديك سؤال؟ نحن هنا للمساعدة!</h3>
+            <p>يرجى الاتصال بنا على الرقم 123-456-789 أو إرسال بريد إلكتروني إلى support@example.com.</p>
+        </div>
+
+        <h2 id="blog">مدونتنا</h2>
+        <div class="blog">
+            <div class="blog-post">
+                <h4>كيفية اختيار الحقيبة المناسبة؟</h4>
+                <p>نصائح لاختيار الحقيبة التي تناسب احتياجاتك...</p>
+            </div>
+            <div class="blog-post">
+                <h4>أحدث صيحات الحقائب في 2024</h4>
+                <p>تعرف على أحدث الاتجاهات في عالم الحقائب...</p>
+            </div>
+        </div>
+
+        <h2 id="login">تسجيل الدخول</h2>
+        <div class="login-form">
+            <input type="email" placeholder="البريد الإلكتروني">
+            <input type="password" placeholder="كلمة المرور">
+            <button>تسجيل الدخول</button>
+        </div>
+
+        <h2 id="signup">إنشاء حساب</h2>
+        <div class="signup-form">
+            <input type="text" placeholder="الاسم الكامل">
+            <input type="email" placeholder="البريد الإلكتروني">
+            <input type="password" placeholder="كلمة المرور">
+            <button>إنشاء حساب</button>
+        </div>
+
+        <h2 id="map">خريطة المتاجر</h2>
+        <div class="map">
+            <p>هنا يمكنك رؤية مواقع متاجرنا على الخريطة.</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345094486!2d144.9559283153185!3d-37.81720997975124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0a1f32b5%3A0xd98b4e36b26f8eec!2z2KfZhNix2KfZhNix2YXYr9mF2LnYp9i52KfZhNix2KfZhNix2KzYudmF2YMg2KzZg9in2YQg2KfZhNix2KfZhNix2YfYqiDZg9in2YjZ!5e0!3m2!1sar!2seg!4v1623869149235!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <h2 id="testimonials">آراء العملاء</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p>الحقائب رائعة جداً والجودة ممتازة!</p>
+                <p><strong>محمد</strong></p>
+            </div>
+            <div class="testimonial">
+                <p>اشتريت حقيبة وتوصيل سريع وخدمة ممتازة.</p>
+                <p><strong>سارة</strong></p>
+            </div>
+        </div>
+        
+        <h2 id="video">فيديو تعليمي</h2>
+        <div class="video-section">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="فيديو تعليمي" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <h2 id="news">أخبارنا</h2>
+        <div class="news-section">
+            <div class="news-item">
+                <h4>إطلاق خط منتجات جديد!</h4>
+                <p>نحن متحمسون للإعلان عن إطلاق خط منتجات جديد في هذا الشهر!</p>
+            </div>
+            <div class="news-item">
+                <h4>شراكة جديدة مع مصممي الأزياء!</h4>
+                <p>قمنا بتوقيع شراكة مع أفضل مصممي الأزياء لتقديم تصاميم فريدة!</p>
+            </div>
+        </div>
+
+        <h2 id="accordion">أسئلة شائعة</h2>
+        <div class="accordion">
+            <div class="accordion-item">
+                <h4>ما هو الوقت المستغرق لتسليم الطلب؟</h4>
+                <p>يستغرق التسليم عادة من 3 إلى 7 أيام عمل.</p>
+            </div>
+            <div class="accordion-item">
+                <h4>هل يمكنني تغيير طلبي بعد إرساله؟</h4>
+                <p>نعم، يمكنك تغيير طلبك خلال ساعتين من الإرسال.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2024 تطبيق حقائب</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
